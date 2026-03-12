@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.contact-section {
+    min-height: 100vh;
+    background: linear-gradient(rgba(255,105,180,0.25), rgba(0,0,0,0.4)),
+            url("{{ url_for('static', filename='images/bg.jpg') }}")
+            no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.contact-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(25px);
+    border-radius: 25px;
+    padding: 50px;
+    box-shadow: 0 0 60px rgba(255,105,180,0.35);
+    animation: fadeSlide 1s ease;
+}
+
+.contact-title {
+    text-align: center;
+    color: #ff85a2;
+    font-weight: 700;
+    margin-bottom: 50px;
+    font-size: 32px;
+}
+
+.form-floating > .form-control {
+    background: transparent;
+    border: 1px solid #ff99cc;
+    color: white;
+    border-radius: 30px;
+}
+
+.form-floating > .form-control:focus {
+    border-color: #ff3399;
+    box-shadow: 0 0 15px rgba(255,105,180,0.6);
+    background: transparent;
+    color: white;
+}
+
+.form-floating > label {
+    color: #ffc0d9;
+}
+
+.btn-contact {
+    background: linear-gradient(45deg,#ff4e91,#ff85a2);
+    border: none;
+    border-radius: 30px;
+    padding: 12px;
+    font-weight: bold;
+    transition: 0.3s;
+    color: white;
+}
+
+.btn-contact:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,105,180,0.6);
+}
+
+.info-card {
+    background: rgba(255,255,255,0.12);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    transition: 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(255,105,180,0.5);
+}
+
+.icon-circle {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(45deg,#ff4e91,#ff85a2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 22px;
+    color: white;
+}
+
+@keyframes fadeSlide {
+    from {opacity:0; transform:translateY(40px);}
+    to {opacity:1; transform:translateY(0);}
+}
+</style>
+
+<div class="contact-section">
+    <div class="contact-wrapper">
+
+        <h2 class="contact-title">Let's Connect With SparkleCart 💎</h2>
+
+        <div class="row g-5">
+
+            <!-- Left: Form -->
+            <div class="col-md-7">
+
+                <form method="POST">
+
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                        <label>Your Name</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                        <label>Your Email</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <textarea class="form-control" name="message" placeholder="Message" style="height:120px" required></textarea>
+                        <label>Your Message</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-contact w-100">
+                        Send Message ✨
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- Right: Info Cards -->
+            <div class="col-md-5">
+
+                <div class="info-card mb-4">
+                    <div class="icon-circle">📍</div>
+                    <h5>Our Location</h5>
+                    <p>Rajkot, Gujarat</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <div class="icon-circle">📞</div>
+                    <h5>Call Us</h5>
+                    <p>+91 98765 43210</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-circle">✉</div>
+                    <h5>Email</h5>
+                    <p>support@sparklecart.com</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+    background: linear-gradient(135deg, #ff85a2, #ff4e91);
+    min-height: 100vh;
+}
+
+.profile-container {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(255,105,180,0.6);
+    animation: fadeSlide 1s ease;
+    color: white;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3135/3135715.png");
+    background-size: cover;
+    border: 4px solid #ff3399;
+}
+
+.profile-card h3 {
+    font-weight: bold;
+}
+
+.profile-btn {
+    margin-top: 20px;
+    background: linear-gradient(45deg,#ff4e91,#ff85a2);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.profile-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
+@keyframes fadeSlide {
+    from {opacity:0; transform:translateY(50px);}
+    to {opacity:1; transform:translateY(0);}
+}
+</style>
+
+<div class="profile-container">
+    <div class="profile-card">
+
+        <div class="profile-avatar"></div>
+
+        <h3>Welcome, {{ session['user'] }} 💖</h3>
+        <p>Thank you for shopping with SparkleCart ✨</p>
+
+        <a href="/" class="btn profile-btn text-white">Back to Home</a>
+
+    </div>
+</div>
+
+{% endblock %}

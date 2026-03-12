@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    /* .auth-modern {
+    min-height: 100vh;
+    background: url("{{ url_for('static', filename='images/back5.jpg') }}") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+
+body {
+    background: url("{{ url_for('static', filename='images/back5.jpg') }}") no-repeat center center/cover;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+}
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.auth-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 0 40px rgba(255,105,180,0.3);
+    animation: slideUp 1s ease;
+}
+
+.auth-card h2 {
+    text-align: center;
+    color: #ff85a2;
+    margin-bottom: 25px;
+}
+
+.form-control {
+    background: transparent;
+    border: 1px solid #aaa;
+    color: white;
+    border-radius: 30px;
+    padding: 12px 20px;
+}
+
+.form-control:focus {
+    border-color: #ff3399;
+    box-shadow: 0 0 15px rgba(255,105,180,0.6);
+    background: transparent;
+    color: white;
+}
+
+.btn-auth {
+    background: linear-gradient(45deg,#ff4e91,#ff85a2);
+    border: none;
+    border-radius: 30px;
+    padding: 12px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-auth:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,105,180,0.6);
+}
+
+.link-text {
+    text-align: center;
+    margin-top: 15px;
+    color: white;
+}
+
+.link-text a {
+    color: #ff85a2;
+    text-decoration: none;
+}
+
+@keyframes slideUp {
+    from { opacity:0; transform:translateY(50px);}
+    to { opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+{% include 'header.html' %}
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Welcome Back 💎</h2>
+
+        <form method="POST">
+
+            <input type="email" name="email" class="form-control mb-3" placeholder="Email" required>
+
+            <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+
+            <button type="submit" class="btn btn-auth w-100">Login</button>
+
+        </form>
+
+        {% if success %}
+<div class="alert alert-success text-center">
+    Login Successful 💎 Redirecting to Home...
+</div>
+
+<script>
+    setTimeout(function(){
+        window.location.href = "/index";
+    }, 2000);
+</script>
+{% endif %}
+
+        <div class="link-text">
+            Don't have account? <a href="/register">Register</a>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+</body>
+</html>

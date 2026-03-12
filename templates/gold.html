@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center section-title mb-4">Gold Collection</h2>
+    <div class="row">
+
+        {% set gold_products = [
+            {'id':1, 'name':'Gold Necklace', 'price':4999, 'image':'https://images.unsplash.com/photo-1605106702734-205df224ecce', 'description':'Elegant 22k gold necklace', 'material':'gold'},
+            {'id':2, 'name':'Gold Ring', 'price':2999, 'image':'https://images.unsplash.com/photo-1617038220319-276d3cfab638', 'description':'Beautiful 18k gold ring', 'material':'gold'},
+            {'id':3, 'name':'Gold Earrings', 'price':1999, 'image':'https://images.unsplash.com/photo-1611599530160-2b7b1a5a0b1c', 'description':'Stylish gold earrings', 'material':'gold'},
+            {'id':4, 'name':'Gold Bracelet', 'price':3499, 'image':'https://images.unsplash.com/photo-1620118668861-53c8c8c0dc17', 'description':'Classic gold bracelet', 'material':'gold'},
+            {'id':5, 'name':'Gold Pendant', 'price':2599, 'image':'https://images.unsplash.com/photo-1625603478051-cb1f63d0ff42', 'description':'Delicate gold pendant', 'material':'gold'},
+            {'id':6, 'name':'Gold Bangles', 'price':3999, 'image':'https://images.unsplash.com/photo-1617038220319-276d3cfab638', 'description':'Traditional gold bangles', 'material':'gold'}
+        ] %}
+
+        {% for product in gold_products %}
+        <div class="col-md-4 mb-4">
+            <div class="card product-card shadow" data-bs-toggle="modal" data-bs-target="#productModal{{ product.id }}">
+                <img src="{{ product.image }}" class="card-img-top product-img">
+                <div class="card-body text-center">
+                    <h5>{{ product.name }}</h5>
+                    <p class="price">₹{{ product.price }}</p>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="productModal{{ product.id }}" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{{ product.name }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="{{ product.image }}" class="img-fluid mb-3">
+                            <p>{{ product.description }}</p>
+                            <p class="price">₹{{ product.price }}</p>
+                            <a href="/add_to_cart/{{ product.id }}" class="btn btn-gold w-100">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+<style>
+body {
+    background-color: #ffe6f0;
+    color: #3d003d;
+}
+
+.product-card {
+    background: #fff0f5;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 15px #ff66b3;
+}
+
+.price {
+    color: #ff3399;
+    font-weight: bold;
+}
+
+.section-title {
+    color: #ff3399;
+    font-weight: bold;
+}
+</style>
+
+{% endblock %}

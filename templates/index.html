@@ -247,8 +247,8 @@
 <div class="hero-section">
     <!-- Slides -->
     <div class="hero-slide active" style="background-image: url('static/images/back.jpg');"></div>
-    <div class="hero-slide" style="background-image: url('static/images/g7.jpg');"></div>
-    <div class="hero-slide" style="background-image: url('static/images/s5.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('static/images/back4.jpeg');"></div>
+    <div class="hero-slide" style="background-image: url('static/images/back2.jpeg');"></div>
 
     <!-- Dark Overlay -->
     <div class="hero-overlay"></div>
@@ -384,38 +384,6 @@
     </div>
 </div>
 
-<div class="container mt-5">
-<div class="row">
-
-{% for p in products %}
-
-<div class="col-md-4">
-<div class="card shadow">
-
-<img src="{{ url_for('static', filename='images/' + p.image) }}" class="card-img-top">
-
-<div class="card-body text-center">
-
-<h5>{{ p.name }}</h5>
-<p>₹ {{ p.price }}</p>
-
-<a href="/add_to_cart/{{p.id}}" class="btn btn-success">
-Add to Cart 🛒
-</a>
-
-<a href="/add_to_wishlist/{{p.id}}" class="btn btn-danger">
-Wishlist ❤️
-</a>
-
-</div>
-</div>
-</div>
-
-{% endfor %}
-
-</div>
-</div>
-
 <!-- JEWELLERY GALLERY -->
 <div class="container mt-5">
     <h2 class="text-center section-title mb-4">Jewellery Gallery</h2>
@@ -438,12 +406,12 @@ Wishlist ❤️
 </div>
 
 <div class="text-center mt-4">
-    <a href="/about" class="btn btn-gold px-4">More Images →</a>
+    <a href="/products" class="btn btn-gold px-4">More Images →</a>
 </div>
 
 <!-- FOOTER SECTION -->
-<!-- <div class="container-fluid mt-5 footer text-center p-4"> -->
-    <!-- <p>© 2026 Jewellery Store | Designed with ❤️</p> -->
+<div class="container-fluid mt-5 footer text-center p-4">
+    <p>© 2026 Jewellery Store | Designed with ❤️</p>
 </div>
 
 <script>

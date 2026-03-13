@@ -1,79 +1,102 @@
-{% extends "base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Collection - SparkleCart</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+body { background: linear-gradient(135deg,#1e1e2f,#2c2c3f); font-family: Arial,sans-serif; color:white; }
+.section-title{ color:#ff3399; font-weight:bold; text-align:center; font-size:2.5rem; margin-bottom:40px; text-shadow:0 0 10px #ffcc66; }
+.product-card{ backdrop-filter: blur(12px); background: rgba(255,255,255,0.08); border-radius:20px; overflow:hidden; transition:0.5s; box-shadow:0 8px 25px rgba(0,0,0,0.3); position:relative; opacity:0; transform: translateY(30px);}
+.product-card.show{ opacity:1; transform: translateY(0);}
+.product-card:hover{ transform:translateY(-10px) scale(1.03); box-shadow:0 20px 40px rgba(255,105,180,0.3);}
+.product-img{ height:250px; object-fit:cover; transition:0.5s;}
+.product-card:hover .product-img{ transform:scale(1.1);}
+.overlay{ position:absolute; inset:0; background:rgba(0,0,0,0.6); opacity:0; transition:0.4s; display:flex; justify-content:center; align-items:center; flex-direction:column;}
+.product-card:hover .overlay{ opacity:1;}
+.cart-btn{ background:linear-gradient(45deg,#ffcc33,#ffd699); border-radius:30px; color:white; margin-bottom:5px; }
+.sale-badge{ position:absolute; top:10px; left:10px; background: #ffcc33; padding:5px 10px; border-radius:15px; font-weight:bold; font-size:0.9rem; color:white; z-index:2;}
+.price{ font-size:1.1rem; color:#ffcc00; transition:0.3s;}
+.product-card:hover .price{ color:#fff; transform: scale(1.1);}
+</style>
+</head>
+<body>
 
-<div class="container mt-5">
-    <h2 class="text-center section-title mb-4">Gold Collection</h2>
-    <div class="row">
+{% include 'header.html' %}
 
-        {% set gold_products = [
-            {'id':1, 'name':'Gold Necklace', 'price':4999, 'image':'https://images.unsplash.com/photo-1605106702734-205df224ecce', 'description':'Elegant 22k gold necklace', 'material':'gold'},
-            {'id':2, 'name':'Gold Ring', 'price':2999, 'image':'https://images.unsplash.com/photo-1617038220319-276d3cfab638', 'description':'Beautiful 18k gold ring', 'material':'gold'},
-            {'id':3, 'name':'Gold Earrings', 'price':1999, 'image':'https://images.unsplash.com/photo-1611599530160-2b7b1a5a0b1c', 'description':'Stylish gold earrings', 'material':'gold'},
-            {'id':4, 'name':'Gold Bracelet', 'price':3499, 'image':'https://images.unsplash.com/photo-1620118668861-53c8c8c0dc17', 'description':'Classic gold bracelet', 'material':'gold'},
-            {'id':5, 'name':'Gold Pendant', 'price':2599, 'image':'https://images.unsplash.com/photo-1625603478051-cb1f63d0ff42', 'description':'Delicate gold pendant', 'material':'gold'},
-            {'id':6, 'name':'Gold Bangles', 'price':3999, 'image':'https://images.unsplash.com/photo-1617038220319-276d3cfab638', 'description':'Traditional gold bangles', 'material':'gold'}
-        ] %}
-
-        {% for product in gold_products %}
-        <div class="col-md-4 mb-4">
-            <div class="card product-card shadow" data-bs-toggle="modal" data-bs-target="#productModal{{ product.id }}">
-                <img src="{{ product.image }}" class="card-img-top product-img">
-                <div class="card-body text-center">
-                    <h5>{{ product.name }}</h5>
-                    <p class="price">₹{{ product.price }}</p>
+<div class="container py-5">
+    <h2 class="section-title">✨ Gold Collection</h2>
+    <div class="row g-4">
+        {% for i in range(1,16) %}
+        <div class="col-md-4 col-lg-3">
+            <div class="product-card">
+                {% if i in [3,7,12] %}
+                <div class="sale-badge">Sale</div>
+                {% endif %}
+                <img src="{{ url_for('static', filename='images/g' + i|string + '.jpg') }}" class="w-100 product-img">
+                <div class="overlay">
+                    <button class="btn cart-btn" onclick="openModal({{i}})">👁 Quick View</button>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-pill">❤ Wishlist</a>
+                </div>
+                <div class="p-3 text-center">
+                    <h6>Gold Exclusive {{i}}</h6>
+                    <p class="price">₹ {{ 8000 + (i*500) }}</p>
                 </div>
             </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="productModal{{ product.id }}" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">{{ product.name }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <img src="{{ product.image }}" class="img-fluid mb-3">
-                            <p>{{ product.description }}</p>
-                            <p class="price">₹{{ product.price }}</p>
-                            <a href="/add_to_cart/{{ product.id }}" class="btn btn-gold w-100">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
         {% endfor %}
-
     </div>
 </div>
 
-<style>
-body {
-    background-color: #ffe6f0;
-    color: #3d003d;
+<!-- Quick View Modal -->
+<div class="modal fade" id="quickViewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="modalTitle">Product Details</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="modalImage" src="" class="img-fluid rounded">
+        <p class="mt-3" id="modalPrice"></p>
+        <p>Elegant gold jewellery perfect for gifting and festive occasions.</p>
+      </div>
+      <div class="modal-footer border-0">
+        <button class="btn cart-btn">🛍 Add to Cart</button>
+        <button class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const productData = {
+    {% for i in range(1,16) %}
+    {{i}}: {title:'Gold Exclusive {{i}}', price:'₹ {{ 8000 + (i*500) }}', img:'{{ url_for("static", filename="images/g"+i|string+".jpg") }}'},
+    {% endfor %}
+};
+function openModal(id){
+    document.getElementById('modalTitle').innerText = productData[id].title;
+    document.getElementById('modalPrice').innerText = productData[id].price;
+    document.getElementById('modalImage').src = productData[id].img;
+    var modal = new bootstrap.Modal(document.getElementById('quickViewModal'));
+    modal.show();
 }
 
-.product-card {
-    background: #fff0f5;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
+// Scroll fade-in effect
+function scrollAnimation(){
+    document.querySelectorAll('.product-card').forEach(c=>{
+        if(c.getBoundingClientRect().top < window.innerHeight - 100) c.classList.add('show');
+    });
 }
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 15px #ff66b3;
-}
+window.addEventListener('scroll',scrollAnimation);
+window.addEventListener('load',scrollAnimation);
+</script>
 
-.price {
-    color: #ff3399;
-    font-weight: bold;
-}
-
-.section-title {
-    color: #ff3399;
-    font-weight: bold;
-}
-</style>
-
-{% endblock %}
+</body>
+</html>

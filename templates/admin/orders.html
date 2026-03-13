@@ -1,0 +1,29 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+
+<h2>Orders</h2>
+
+<table class="table table-dark">
+
+<tr>
+<th>ID</th>
+<th>User</th>
+<th>Product</th>
+<th>Status</th>
+</tr>
+
+{% for o in orders %}
+
+<tr>
+<td>{{o.id}}</td>
+<td>{{o.user}}</td>
+<td>{{o.product}}</td>
+<td>{{o.status}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

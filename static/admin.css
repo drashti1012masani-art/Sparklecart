@@ -1,0 +1,23 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, #fbb034, #ffdd00);
+    border: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.btn-gradient:hover {
+    opacity: 0.9;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #fff3e0;
+}

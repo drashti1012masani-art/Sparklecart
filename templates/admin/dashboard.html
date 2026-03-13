@@ -1,0 +1,39 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+
+<h2>Admin Dashboard</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+<div class="card bg-warning text-dark p-3">
+<h4>Gold</h4>
+<h2>{{gold}}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card bg-light text-dark p-3">
+<h4>Silver</h4>
+<h2>{{silver}}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card bg-info text-dark p-3">
+<h4>Diamond</h4>
+<h2>{{diamond}}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card bg-success text-white p-3">
+<h4>Orders</h4>
+<h2>{{orders}}</h2>
+</div>
+</div>
+
+</div>
+
+{% endblock %}

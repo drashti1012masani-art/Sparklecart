@@ -1,36 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#ffb3d9;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#ffb3d9; padding:0.5rem 1rem;">
     <div class="container d-flex justify-content-between align-items-center">
 
-        <a class="navbar-brand fw-bold fs-4" href="/index">SparkleCart 💗</a>
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold fs-4" href="/">SparkleCart 💗</a>
 
-        <div>
-            <a class="nav-link d-inline mx-2" href="/index">Home</a>
-            <a class="nav-link d-inline mx-2" href="/contact">Contact</a>
-            <a class="nav-link d-inline mx-2" href="/product">Product</a>
-            <a class="nav-link d-inline mx-2" href="/about">about</a>
-            <a class="nav-link d-inline mx-2" href="/wishlist">Wishlist</a>
-            <a class="nav-link d-inline mx-2" href="/cart">Cart 🛒</a>
+        <!-- Links -->
+        <div class="d-flex align-items-center">
+            <a class="nav-link mx-2" href="/">Home</a>
+            <a class="nav-link mx-2" href="/products">Products</a>
+            <a class="nav-link mx-2" href="/about">About</a>
+            <a class="nav-link mx-2" href="/contact">Contact</a>
         </div>
 
-        <div>
+        <!-- User Buttons -->
+        <div class="d-flex align-items-center">
             {% if session.get('user') %}
-
-                <!-- AFTER LOGIN -->
-                <a href="/myprofile" class="btn btn-outline-dark btn-sm me-2">
-                    My Profile
-                </a>
-
-                <a href="/logout" class="btn btn-pink btn-sm">
-                    Logout
-                </a>
-
+                <span class="me-2">Hello, {{ session['user'] }}</span>
+                <a href="/logout" class="btn btn-pink btn-sm">Logout</a>
             {% else %}
-
-                <!-- BEFORE LOGIN -->
-                <a href="/register" class="btn btn-pink btn-sm">
-                    Register
-                </a>
-
+             <!--   <a href="/login" class="btn btn-outline-dark btn-sm me-2">Login</a>-->
+                <a href="/register" class="btn btn-pink btn-sm">Signup</a>
             {% endif %}
         </div>
 

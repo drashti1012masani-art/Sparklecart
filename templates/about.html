@@ -1,28 +1,173 @@
-{% extends "base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - SparkleCart</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1e1e2f,#2c2c3f);
+    color:white;
+}
+.section-title {
+    color: #ff3399;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px #ffcc66;
+}
+.about-container {
+    max-width: 1100px;
+    margin: auto;
+}
+.about-card {
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(30px);
+}
+.about-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.about-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255,105,180,0.3);
+}
+.about-image {
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.team-member {
+    text-align: center;
+    transition: 0.3s;
+}
+.team-member:hover {
+    transform: scale(1.05);
+}
+.team-member img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 4px solid #ff4e91;
+    margin-bottom: 15px;
+}
+.team-member h5 { color:#ffcc33; font-weight:bold; }
+.team-member p { color:#fff; font-size:0.9rem; }
+.stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 40px;
+}
+.stats div {
+    background: rgba(255,255,255,0.08);
+    padding: 20px;
+    border-radius: 15px;
+    flex: 1;
+    margin: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+.stats div:hover { transform: scale(1.05); box-shadow: 0 15px 35px rgba(255,105,180,0.3);}
+.stats h3 { color:#ffcc33; margin-bottom:10px; }
+.stats p { color:#fff; font-size:1rem; }
 
-<div class="container mt-5">
-    <h2 class="text-center section-title mb-4">About Our Jewellery Store 💎</h2>
+/* Responsive */
+@media(max-width:768px){
+    .stats { flex-direction: column; }
+}
+</style>
+</head>
+<body>
 
-    <div class="row align-items-center">
-        <div class="col-md-6">
-            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338"
-                 class="img-fluid rounded shadow">
+{% include 'header.html' %}
+
+<div class="about-container py-5">
+    <h2 class="section-title">✨ About SparkleCart</h2>
+
+    <!-- Our Story -->
+    <div class="about-card row align-items-center">
+        <div class="col-md-6 mb-3">
+            <img src="{{ url_for('static', filename='images/p14.jpeg') }}" class="about-image">
         </div>
         <div class="col-md-6">
-            <h4>Luxury • Trust • Elegance</h4>
-            <p>
-                We offer premium Gold, Silver and Diamond jewellery.
-                Our mission is to make every woman shine with confidence.
-                Every piece is crafted with perfection and love.
-            </p>
-            <p>
-                Since 2026, we have been delivering timeless beauty
-                and unmatched quality to our customers.
-            </p>
+            <h3>Our Story</h3>
+            <p>At SparkleCart, we craft exquisite jewellery for every special occasion. From gold to diamonds, every piece is designed with passion, precision, and elegance. We believe in helping our customers shine bright, every day.</p>
         </div>
     </div>
 
+    <!-- Our Mission -->
+    <div class="about-card row align-items-center flex-row-reverse">
+        <div class="col-md-6 mb-3">
+            <img src="{{ url_for('static', filename='images/d20.jpeg') }}" class="about-image">
+        </div>
+        <div class="col-md-6">
+            <h3>Our Mission</h3>
+            <p>To deliver luxury jewellery with unmatched quality and style. Our mission is to make every moment special with pieces that tell a story and leave a lasting impression.</p>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <h2 class="section-title mt-5">💎 Meet Our Team</h2>
+    <div class="row g-4">
+        {% set team = [
+            {'name':'Riya Sharma','role':'Founder & CEO','img':'team1.jpeg'},
+            {'name':'Aarav Mehta','role':'Head Designer','img':'team2.jpeg'},
+            {'name':'Kavya Singh','role':'Marketing Lead','img':'team3.jpeg'},
+            {'name':'Vivaan Patel','role':'Operations Manager','img':'team4.jpeg'}
+        ] %}
+        {% for member in team %}
+        <div class="col-md-3">
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='images/' + member.img) }}">
+                <h5>{{ member.name }}</h5>
+                <p>{{ member.role }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Stats -->
+    <div class="stats mt-5">
+        <div>
+            <h3>500+</h3>
+            <p>Happy Customers</p>
+        </div>
+        <div>
+            <h3>1200+</h3>
+            <p>Jewellery Pieces</p>
+        </div>
+        <div>
+            <h3>15+</h3>
+            <p>Years of Excellence</p>
+        </div>
+    </div>
 </div>
 
-{% endblock %}
+{% include 'footer.html' %}
+
+<script>
+function scrollAnimation() {
+    document.querySelectorAll('.about-card, .team-member, .stats div').forEach(c=>{
+        if(c.getBoundingClientRect().top < window.innerHeight - 100) c.classList.add('show');
+    });
+}
+window.addEventListener('scroll',scrollAnimation);
+window.addEventListener('load',scrollAnimation);
+</script>
+
+</body>
+</html>

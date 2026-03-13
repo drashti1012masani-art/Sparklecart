@@ -2,32 +2,21 @@
 {% block content %}
 
 <div class="container mt-5">
+    <h2>Your Cart</h2>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item[1] }}</td>
+            <td>₹{{ item[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 
-<h2 class="text-center">My Cart 🛒</h2>
-
-<div class="row">
-
-{% for item in cart_items %}
-
-<div class="col-md-4">
-
-<div class="card shadow">
-
-<img src="{{ url_for('static', filename='images/' + item.image) }}" class="card-img-top">
-
-<div class="card-body text-center">
-
-<h5>{{ item.name }}</h5>
-<p>₹ {{ item.price }}</p>
-
-</div>
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
+    <h4>Total: ₹{{ total }}</h4>
 </div>
 
 {% endblock %}

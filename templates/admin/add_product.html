@@ -1,0 +1,22 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+<h2 class="mb-4 fw-bold">Add New Product</h2>
+<div class="card shadow-sm p-4">
+<form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label class="form-label fw-semibold">Product Name</label>
+        <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label fw-semibold">Price</label>
+        <input type="number" name="price" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label fw-semibold">Images</label>
+        <input type="file" name="images" class="form-control" multiple required>
+    </div>
+    <button type="submit" class="btn btn-gradient">Add Product</button>
+</form>
+</div>
+{% endblock %}

@@ -4,87 +4,27 @@
     <title>SparkleCart 💖</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<style>
-body { background-color:#ffe6f0; color:#3d003d; }
+    <style>
+        body { background-color: #ffe6f0; color: #3d003d; }
+        a { text-decoration: none; }
 
-.navbar { background-color:#ffb3d9; }
-.nav-link { color:#3d003d !important; }
-.nav-link:hover { color:#ff3399 !important; }
+        .btn-pink { background-color: #ff66b3; color: white; border: none; transition:0.3s; }
+        .btn-pink:hover { background-color: #ff3399; }
 
-.btn-pink {
-    background-color:#ff66b3;
-    color:white;
-    border:none;
-}
-.btn-pink:hover { background-color:#ff3399; }
+        .navbar { background-color: #ffb3d9 !important; }
+        .navbar .nav-link { color: #3d003d !important; }
+        .navbar .nav-link:hover { color: #ff3399 !important; }
 
-footer {
-    background-color:#ffb3d9;
-    padding:20px;
-    text-align:center;
-    margin-top:50px;
-}
-</style>
+        .card { background-color: #ffe6f0; border: 1px solid #ff99cc; }
+        footer { background-color: #ffb3d9; color: #3d003d; }
+        footer a { color: #3d003d; }
+        footer a:hover { color: #ff3399; }
+        h1,h2,h3,h4,h5,h6 { color: #3d003d; }
+    </style>
 </head>
 <body>
 
+    
 
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#ffb3d9; padding:0.5rem 1rem;">
-    <div class="container d-flex justify-content-between align-items-center">
-
-        <!-- Brand -->
-        <a class="navbar-brand fw-bold fs-4" href="/">SparkleCart 💗</a>
-
-        <!-- Links -->
-        <div class="d-flex align-items-center">
-            <a class="nav-link mx-2" href="/">Home</a>
-            <a class="nav-link mx-2" href="/contact">Contact</a>
-        </div>
-
-        <!-- User Buttons -->
-        <div class="d-flex align-items-center">
-
-            {% if session.get('user') %}
-
-                <!-- AFTER LOGIN -->
-                <span class="me-3 fw-semibold" style="color:#3d003d;">
-                    Hello, {{ session['user'] }}
-                </span>
-
-                <a href="/myprofile" class="btn btn-outline-dark btn-sm me-2">
-                    My Profile
-                </a>
-
-                <a href="/logout" class="btn btn-pink btn-sm">
-                    Logout
-                </a>
-
-            {% else %}
-
-                <!-- BEFORE LOGIN -->
-               
-
-                <a href="/register" class="btn btn-pink btn-sm">
-                    Register
-                </a>
-
-            {% endif %}
-
-        </div>
-
-    </div>
-</nav>
-
-
-<div class="container mt-4">
-{% block content %}{% endblock %}
-</div>
-
-<!-- FOOTER -->
-<footer>
-<p>© 2026 SparkleCart 💎 | Designed with 💖 by Drashti</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
